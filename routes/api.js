@@ -21,5 +21,7 @@ router.post("/komik", authMiddleware, komikController.createKomik);
 router.put("/komik/:id", authMiddleware, komikController.updateKomik);
 router.delete("/komik/:id", authMiddleware, komikController.deleteKomik);
 
+router.post("/genre", authMiddleware, genreController.createGenre);
+
 
 module.exports = router;
