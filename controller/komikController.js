@@ -34,3 +34,22 @@ async function createKomik(req, res) {
     res.status(500).json({ error: "failed to create komik" });
   }
 }
+
+async function updateKomik(req, res) {
+  const { id } = req.params;
+  const { title, description, author } = req.body;
+  try {
+    const komik = await db.Komik.findByPk(id);
+    if (!komik) {
+      return res.status(404).json({ error: "komik not found" });
+    }
+    komik.title = title;
+    komik.description = description;
+    komik.author = author;
+    await komik.save();
+    res.status(200).json(komik);
+  } catch (err) {
+    console.error("error updating komik", err.message);
+    res.status(500).json({ error: "failed to update komik" });
+  }
+}
