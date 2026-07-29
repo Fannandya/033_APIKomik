@@ -3,6 +3,7 @@ const router = express.Router();
 
 const komikController = require("../controller/komikController");
 const userController = require("../controller/userController");
+const genreController = require("../controller/genreController");
 const authMiddleware = require("../middleware/authMiddleware");
 
 // public
@@ -12,10 +13,13 @@ router.post("/login", userController.login);
 router.get("/komik", komikController.getAllKomik);
 router.get("/komik/:id", komikController.getKomikById);
 
+router.get("/genre", genreController.getAllGenre);
+router.get("/genre/:id", genreController.getGenreById);
+
 // protected
 router.post("/komik", authMiddleware, komikController.createKomik);
 router.put("/komik/:id", authMiddleware, komikController.updateKomik);
 router.delete("/komik/:id", authMiddleware, komikController.deleteKomik);
-router.post("/genre", authMiddleware, )
+
 
 module.exports = router;
