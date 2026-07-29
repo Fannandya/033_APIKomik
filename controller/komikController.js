@@ -15,7 +15,7 @@ async function getKomikById(req, res) {
   try {
     const komik = await db.Komik.findByPk(id);
     if (!komik) {
-      return res.status(404).json({ error: "komik tidak ditemukan" });
+      return res.status(404).json({ error: "komik not found" });
     }
     res.status(200).json(komik);
   } catch (err) {
